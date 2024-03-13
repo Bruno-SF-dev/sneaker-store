@@ -1,9 +1,9 @@
 'use client';
 
-import { Search } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { CartWidget } from './cart/cart-widget';
+import { SearchForm } from './search-form';
 
 export function Header() {
   return (
@@ -13,14 +13,7 @@ export function Header() {
           devstore
         </Link>
 
-        <form className="flex w-[320px] items-center gap-2 pl-4 rounded-full bg-zinc-900">
-          <Search className="size-5 text-zinc-500" />
-
-          <input
-            placeholder="Buscar produtos..."
-            className="flex-1 py-3 px-2 rounded-full bg-transparent text-sm placeholder:text-zinc-500 outline-none focus-visible:ring-1 focus-visible:ring-zinc-800"
-          />
-        </form>
+        <SearchForm />
       </div>
 
       <div className="flex items-center gap-4">
