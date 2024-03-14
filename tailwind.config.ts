@@ -14,6 +14,9 @@ const config: Config = {
       gridTemplateRows: {
         'store-page': 'min-content max-content',
       },
+      dropShadow: {
+        'sneaker-card': '0 0px 35px rgba(10, 10, 10, 0.99)',
+      },
     },
   },
   plugins: [],

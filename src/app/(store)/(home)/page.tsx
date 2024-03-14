@@ -1,74 +1,73 @@
 import { api } from '@/data/api';
-import { Product } from '@/data/types/products';
+import { Sneaker } from '@/data/types/sneakers';
+import { translateCategory } from '@/utils/convert-sneaker-category';
+import { translateGender } from '@/utils/convert-sneaker-gender';
 import Image from 'next/image';
 import Link from 'next/link';
 
-async function getFeaturedProducts(): Promise<Product[]> {
-  const response = await api('/products/featured', {
+async function getFeaturedsneakers(): Promise<Sneaker[]> {
+  const response = await api('/sneakers', {
     next: {
       revalidate: 60 * 60, // 1 hora
     },
   });
-  const products = await response.json();
+  const sneakers = await response.json();
 
-  return products;
+  return sneakers;
 }
 
 export default async function Home() {
-  const [highlightedProduct, ...otherProducts] = await getFeaturedProducts();
+  const sneakers = await getFeaturedsneakers();
 
   return (
-    <div className="grid max-h-[860px] grid-cols-9 grid-rows-6 gap-6">
-      <Link
-        href={`/product/${highlightedProduct.slug}`}
-        className="group relative col-span-6 row-span-6 rounded-lg bg-zinc-900 overflow-hidden flex justify-center items-end pt-16"
-      >
-        <Image
-          src={highlightedProduct.image}
-          width={860}
-          height={860}
-          quality={100}
-          alt=""
-          className="group-hover:scale-105 transition-transform duration-500 flex-1"
-        />
+    <div className="grid grid-cols-9 gap-4">
+      <div className="col-span-2 rounded-md border border-zinc-800"></div>
 
-        <div className="absolute bottom-28 right-28 h-12 flex items-center gap-2 max-w-[280px] rounded-full border-2 border-zinc-500 bg-black/60 p-1 pl-5">
-          <span className="text-sm truncate">{highlightedProduct.title}</span>
-          <span className="flex h-full items-center justify-center rounded-full bg-violet-500 px-4 font-semibold whitespace-nowrap">
-            {highlightedProduct.price.toLocaleString('pt-BR', {
-              style: 'currency',
-              currency: 'BRL',
-            })}
-          </span>
-        </div>
-      </Link>
+      <div className="col-span-7 grid grid-cols-4 gap-6">
+        {sneakers.map((sneaker) => (
+          <Link
+            key={sneaker.id}
+            href={`/sneaker/${sneaker.slug}`}
+            className="group relative rounded-lg flex flex-col items-center bg-zinc-900/80 hover:scale-[1.01] transition-transform duration-300"
+          >
+            <Image
+              src={sneaker.original_picture_url}
+              width={640}
+              height={640}
+              quality={100}
+              alt=""
+              className="group-hover:scale-105 transition-transform duration-500 flex-1 drop-shadow-sneaker-card"
+            />
 
-      {otherProducts.map((product) => (
-        <Link
-          key={product.id}
-          href={`/product/${product.slug}`}
-          className="group relative col-span-3 row-span-3 rounded-lg bg-zinc-900 overflow-hidden flex justify-center items-end pt-8"
-        >
-          <Image
-            src={product.image}
-            width={860}
-            height={860}
-            quality={100}
-            alt=""
-            className="group-hover:scale-105 transition-transform duration-500"
-          />
+            <div className="p-3 pt-4 h-48 bg-zinc-950/50 w-full rounded-b-lg border-2 border-zinc-900">
+              <strong className="font-semibold">{sneaker.name}</strong>
 
-          <div className="absolute bottom-10 right-10 h-12 flex items-center gap-2 max-w-[280px] rounded-full border-2 border-zinc-500 bg-black/60 p-1 pl-5">
-            <span className="text-sm truncate">{product.title}</span>
-            <span className="flex h-full items-center justify-center rounded-full bg-violet-500 px-4 font-semibold whitespace-nowrap">
-              {product.price.toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL',
-              })}
-            </span>
-          </div>
-        </Link>
-      ))}
+              <div className="mt-3 flex flex-col gap-1">
+                <span className="text-zinc-300 text-sm">
+                  {sneaker.gender
+                    .map((gender) => translateGender(gender))
+                    .join(' / ')}
+                </span>
+                <span className="text-zinc-300 text-sm">
+                  {sneaker.category
+                    .map((category) => translateCategory(category))
+                    .join(' / ')}
+                </span>
+
+                <strong className="mt-4 font-normal">
+                  {((sneaker.retail_price_cents ?? 0) / 100).toLocaleString(
+                    'pt-BR',
+                    {
+                      style: 'currency',
+                      currency: 'USD',
+                    }
+                  )}
+                </strong>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
