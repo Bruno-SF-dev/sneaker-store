@@ -3,6 +3,8 @@ import { Product } from '@/data/types/products';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { Suspense } from 'react';
+import { SearchText } from './components/search-text';
 
 interface SearchPageProps {
   searchParams: {
@@ -28,9 +30,10 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
   return (
     <div className="flex flex-col gap-4">
-      <p className="text-sm">
-        Resultados para: <span className="font-semibold">{query}</span>
-      </p>
+      <Suspense>
+        <SearchText />
+      </Suspense>
+
       <div className="grid grid-cols-3 gap-6">
         {products.map((product) => (
           <Link
