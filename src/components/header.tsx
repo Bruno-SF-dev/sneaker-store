@@ -1,5 +1,3 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense } from 'react';
@@ -11,7 +9,13 @@ export function Header() {
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-5">
         <Link href="/" className="text-2xl font-extrabold text-white">
-          devstore
+          <Image
+            src="/logo-snkrs.svg"
+            alt=""
+            width={135}
+            height={100}
+            className="w-[94px]"
+          />
         </Link>
 
         <Suspense>
