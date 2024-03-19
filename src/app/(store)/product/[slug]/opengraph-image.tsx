@@ -1,5 +1,4 @@
-import { api } from '@/data/api';
-import { Product } from '@/data/types/products';
+import { getSneaker } from '@/api/services/get-sneaker';
 import { env } from '@/env';
 import { ImageResponse } from 'next/og';
 import colors from 'tailwindcss/colors';
@@ -14,25 +13,17 @@ export const size = {
 
 export const contentType = 'image/png';
 
-async function getProduct(slug: string): Promise<Product> {
-  const response = await api(`/products/${slug}`, {
-    next: {
-      revalidate: 60 * 60, // 1 hora
-    },
-  });
-  const product = await response.json();
-
-  return product;
-}
-
 export default async function OgImage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const product = await getProduct(params.slug);
+  const product = await getSneaker(params.slug);
 
-  const productImageUrl = new URL(product.image, env.APP_URL).toString();
+  const productImageUrl = new URL(
+    product.original_picture_url,
+    env.APP_URL
+  ).toString();
 
   return new ImageResponse(
     (

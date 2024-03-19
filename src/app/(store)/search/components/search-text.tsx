@@ -6,8 +6,9 @@ export function SearchText() {
   const query = searchParams.get('q');
 
   return (
-    <p className="text-sm">
-      Resultados para: <span className="font-semibold">{query}</span>
+    <p>
+      <span className="text-xl text-zinc-300">Resultados para:</span>
+      <span className="ml-4 text-3xl font-semibold">{query}</span>
     </p>
   );
 }

@@ -1,73 +1,72 @@
-import { api } from '@/data/api';
-import { Sneaker } from '@/data/types/sneakers';
-import { translateCategory } from '@/utils/convert-sneaker-category';
-import { translateGender } from '@/utils/convert-sneaker-gender';
+import { getAllSneakers } from '@/api/services/get-all-sneakers';
+import { ButtonItemsPerRow } from '@/components/button-items-per-row';
+import { ProdutCard } from '@/components/product-card';
+import { ProductGrid } from '@/components/product-grid';
+import { SideFilter } from '@/components/side-filter';
+import { HomeLayoutProvider } from '@/contexts/home-layout-context';
+import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
-
-async function getFeaturedsneakers(): Promise<Sneaker[]> {
-  const response = await api('/sneakers', {
-    next: {
-      revalidate: 60 * 60, // 1 hora
-    },
-  });
-  const sneakers = await response.json();
-
-  return sneakers;
-}
 
 export default async function Home() {
-  const sneakers = await getFeaturedsneakers();
+  const sneakers = await getAllSneakers();
 
   return (
-    <div className="grid grid-cols-9 gap-4">
-      <div className="col-span-2 rounded-md border border-zinc-800"></div>
+    <div className="flex flex-col gap-8 relative">
+      <div className="fixed left-0 right-0 h-64 overflow-hidden flex items-center">
+        <Image
+          src="/nike-air-jordan-blue-home.png"
+          width={1000}
+          height={800}
+          alt=""
+          className="w-full mx-auto mb-[180px] brightness-[0.15]"
+        />
+        <h1 className="absolute w-full text-center font-ghotic text-8xl text-zinc-200">
+          <span className="">Elevate </span>
+          <span>Your </span>
+          <span className="">Style</span>
+        </h1>
+      </div>
 
-      <div className="col-span-7 grid grid-cols-4 gap-6">
-        {sneakers.map((sneaker) => (
-          <Link
-            key={sneaker.id}
-            href={`/sneaker/${sneaker.slug}`}
-            className="group relative rounded-lg flex flex-col items-center bg-zinc-900/80 hover:scale-[1.01] transition-transform duration-300"
-          >
-            <Image
-              src={sneaker.original_picture_url}
-              width={640}
-              height={640}
-              quality={100}
-              alt=""
-              className="group-hover:scale-105 transition-transform duration-500 flex-1 drop-shadow-sneaker-card"
-            />
+      <HomeLayoutProvider>
+        <div className="relative mt-64 bg-zinc-950">
+          <div className="absolute inset-0 rounded-md bg-gradient-to-r to-sky-500 from-transparent opacity-[0.05]"></div>
 
-            <div className="p-3 pt-4 h-48 bg-zinc-950/50 w-full rounded-b-lg border-2 border-zinc-900">
-              <strong className="font-semibold">{sneaker.name}</strong>
+          <div className="relative flex flex-col gap-6 max-w-[1580px] mx-auto px-8 py-12">
+            <div className="flex items-center justify-between gap-6 py-2">
+              <h2 className="text-3xl font-semibold">Todos os Produtos</h2>
 
-              <div className="mt-3 flex flex-col gap-1">
-                <span className="text-zinc-300 text-sm">
-                  {sneaker.gender
-                    .map((gender) => translateGender(gender))
-                    .join(' / ')}
-                </span>
-                <span className="text-zinc-300 text-sm">
-                  {sneaker.category
-                    .map((category) => translateCategory(category))
-                    .join(' / ')}
-                </span>
+              <div className="flex gap-6 items-center">
+                <div className="flex gap-2">
+                  <ButtonItemsPerRow quantity={4} />
+                  <ButtonItemsPerRow quantity={3} />
+                  <ButtonItemsPerRow quantity={2} />
+                </div>
 
-                <strong className="mt-4 font-normal">
-                  {((sneaker.retail_price_cents ?? 0) / 100).toLocaleString(
-                    'pt-BR',
-                    {
-                      style: 'currency',
-                      currency: 'USD',
-                    }
-                  )}
-                </strong>
+                <button className="flex items-center gap-2">
+                  Ordernar por
+                  <ChevronDown size={16} />
+                </button>
               </div>
             </div>
-          </Link>
-        ))}
-      </div>
+
+            <div className="grid grid-cols-9 gap-4">
+              <div className="col-span-2">
+                <div className="sticky top-28">
+                  <SideFilter />
+                </div>
+              </div>
+
+              <div className="col-span-7">
+                <ProductGrid>
+                  {sneakers.map((sneaker) => (
+                    <ProdutCard product={sneaker} key={sneaker.id} />
+                  ))}
+                </ProductGrid>
+              </div>
+            </div>
+          </div>
+        </div>
+      </HomeLayoutProvider>
     </div>
   );
 }

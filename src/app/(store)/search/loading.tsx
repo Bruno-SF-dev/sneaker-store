@@ -1,4 +1,4 @@
-import { Skeleton } from '@/components/skeleton';
+import { Skeleton } from '@/components/skeletons/skeleton';
 import { Suspense } from 'react';
 import { SearchText } from './components/search-text';
 

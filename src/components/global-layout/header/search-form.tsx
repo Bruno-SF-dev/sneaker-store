@@ -28,8 +28,10 @@ export function SearchForm() {
   return (
     <form
       onSubmit={handleSearch}
-      className="flex w-[320px] items-center gap-2 pl-4 rounded-full bg-zinc-900"
+      className="flex w-[320px] items-center gap-2 pl-4 rounded-full overflow-hidden bg-transparent relative"
     >
+      <div className="absolute inset-0 rounded-md bg-gradient-to-r from-sky-400 to-zinc-500 opacity-[0.035]"></div>
+
       <Search className="size-5 text-zinc-500" />
 
       <input
@@ -37,7 +39,7 @@ export function SearchForm() {
         required
         defaultValue={existingQueryParams ?? ''}
         placeholder="Buscar produtos..."
-        className="flex-1 py-3 px-2 rounded-full bg-transparent text-sm placeholder:text-zinc-500 outline-none focus-visible:ring-1 focus-visible:ring-zinc-800"
+        className="relative flex-1 py-3 px-2 rounded-full bg-transparent text-sm placeholder:text-zinc-500 outline-none"
       />
     </form>
   );

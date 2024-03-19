@@ -12,10 +12,11 @@ export function AddToCartButton({ productId }: AddToCartButtonProps) {
   return (
     <button
       type="button"
-      className="mt-8 flex h-12 items-center justify-center rounded-full bg-emerald-600 font-semibold text-white"
+      className="relative overflow-hidden mt-8 flex h-12 items-center justify-center rounded-full font-semibold text-white hover:brightness-90 duration-200"
       onClick={() => addToCart(productId)}
     >
-      Adicionar ao carrinho
+      <div className="absolute inset-0 rounded-md bg-gradient-to-r from-sky-500 to-sky-600 opacity-[0.9]"></div>
+      <span className="relative">Adicionar ao carrinho</span>
     </button>
   );
 }
