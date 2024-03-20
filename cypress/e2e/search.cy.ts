@@ -1,11 +1,11 @@
 describe('search products', () => {
   it('deve ser capaz de pesquisar produtos', () => {
-    cy.searchByQuery('moletom');
+    cy.searchByQuery('jordan');
 
     cy.location('pathname').should('include', '/search');
-    cy.location('search').should('include', 'q=moletom');
+    cy.location('search').should('include', 'q=jordan');
 
-    cy.get('a[href^="/produc"]').should('exist');
+    cy.get('a[href^="/product"]').should('exist');
   });
 
   it('deve redirecionar para home quando tentar acessar a search page sem a searchParam "q"', () => {

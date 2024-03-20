@@ -25,7 +25,7 @@ describe('add product to cart', () => {
   });
 
   it('deve ser ser possível buscar um produto e adicioná-lo ao carrinho', () => {
-    cy.get('input[name="q"]').type('moletom').parent('form').submit();
+    cy.get('input[name="q"]').type('jordan').parent('form').submit();
 
     cy.get('a[href^="/product"]').first().click();
 
