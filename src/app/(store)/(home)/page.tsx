@@ -1,15 +1,13 @@
-import { getAllSneakers } from '@/api/services/get-all-sneakers';
+import { ProductList } from '@/app/(store)/(home)/components/product-list';
 import { ButtonItemsPerRow } from '@/components/button-items-per-row';
-import { ProdutCard } from '@/components/product-card';
-import { ProductGrid } from '@/components/product-grid';
 import { SideFilter } from '@/components/side-filter';
 import { HomeLayoutProvider } from '@/contexts/home-layout-context';
 import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
+import { Suspense } from 'react';
+import GridLoading from './components/grid-loading';
 
-export default async function Home() {
-  const sneakers = await getAllSneakers();
-
+export default function Home() {
   return (
     <div className="flex flex-col gap-8 relative">
       <div className="fixed left-0 right-0 h-64 overflow-hidden flex items-center">
@@ -31,7 +29,7 @@ export default async function Home() {
         <div className="relative mt-64 bg-zinc-950">
           <div className="absolute inset-0 rounded-md bg-gradient-to-r to-sky-500 from-transparent opacity-[0.05]"></div>
 
-          <div className="relative flex flex-col gap-6 max-w-[1580px] mx-auto px-8 py-12">
+          <div className="relative flex flex-col gap-6 w-full max-w-[1580px] mx-auto px-8 py-12">
             <div className="flex items-center justify-between gap-6 py-2">
               <h2 className="text-3xl font-semibold">Todos os Produtos</h2>
 
@@ -57,11 +55,9 @@ export default async function Home() {
               </div>
 
               <div className="col-span-7">
-                <ProductGrid>
-                  {sneakers.map((sneaker) => (
-                    <ProdutCard product={sneaker} key={sneaker.id} />
-                  ))}
-                </ProductGrid>
+                <Suspense fallback={<GridLoading />}>
+                  <ProductList />
+                </Suspense>
               </div>
             </div>
           </div>

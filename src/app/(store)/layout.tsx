@@ -1,4 +1,4 @@
-import { Header } from '@/components/global-layout/header';
+import { Header } from '@/components/header';
 import { CartProvider } from '@/contexts/cart-context';
 import { ReactNode } from 'react';
 

@@ -1,8 +1,8 @@
-import { getSearchSneakers } from '@/api/services/get-search-sneakers';
-import { ProdutCard } from '@/components/product-card';
 import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
-import { SearchText } from './components/search-text';
+import GridLoading from './components/grid-loading';
+import { ProductList } from './components/product-list';
+import { SearchTerm } from './components/search-term';
 
 interface SearchPageProps {
   searchParams: {
@@ -17,19 +17,15 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     redirect('/');
   }
 
-  const sneakers = await getSearchSneakers(query);
-
   return (
-    <div className="flex flex-col gap-12 px-8 py-12 max-w-[1580px] mx-auto">
+    <div className="flex flex-col gap-12 px-8 py-12 w-full max-w-[1580px] mx-auto">
       <Suspense>
-        <SearchText />
+        <SearchTerm />
       </Suspense>
 
-      <div className="grid grid-cols-5 gap-6">
-        {sneakers.map((sneaker) => (
-          <ProdutCard product={sneaker} key={sneaker.id} />
-        ))}
-      </div>
+      <Suspense key={query} fallback={<GridLoading />}>
+        <ProductList query={query} />
+      </Suspense>
     </div>
   );
 }

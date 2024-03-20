@@ -9,7 +9,6 @@ export function SearchForm() {
   const searchParams = useSearchParams();
 
   const existingQueryParams = searchParams.get('q');
-
   function handleSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 

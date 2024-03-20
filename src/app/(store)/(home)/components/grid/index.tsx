@@ -3,7 +3,7 @@
 import { useHomeLayout } from '@/contexts/home-layout-context';
 import { ReactNode } from 'react';
 
-export function ProductGrid({ children }: { children: ReactNode }) {
+export function Grid({ children }: { children: ReactNode }) {
   const { itemsPerRow } = useHomeLayout();
 
   const gridCols: { [key: number]: string } = {
