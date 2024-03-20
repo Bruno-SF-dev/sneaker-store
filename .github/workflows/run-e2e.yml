@@ -25,6 +25,5 @@ jobs:
           NEXT_PUBLIC_API_BASE_URL: 'http://localhost:3000'
           APP_URL: 'http://localhost:3000'
         with:
-          dev: npm run dev
           build: npm run build
           start: npm start
