@@ -1,6 +1,4 @@
-import { Category } from '@/api/data/types/sneakers';
-
-export const categoryMap: { [key in Category]: string } = {
+export const categoryMap: { [key: string]: string } = {
   basketball: 'Basquete',
   lifestyle: 'Lifestyle',
   running: 'Corrida',
@@ -8,6 +6,6 @@ export const categoryMap: { [key in Category]: string } = {
   other: 'Outros',
 };
 
-export const translateCategory = (category: Category) => {
+export const translateCategory = (category: string) => {
   return categoryMap[category];
 };

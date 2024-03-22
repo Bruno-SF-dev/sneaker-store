@@ -5,9 +5,17 @@ interface GetAllSneakers {
   queryParams: string;
 }
 
+interface GetAllResponse {
+  data: Sneaker[];
+  currentPage: number;
+  nextPage: number;
+  prevPage: number;
+  totalPages: number;
+}
+
 export async function getAllSneakers({
   queryParams,
-}: GetAllSneakers): Promise<Sneaker[]> {
+}: GetAllSneakers): Promise<GetAllResponse> {
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
   const endpoint = '/sneakers';

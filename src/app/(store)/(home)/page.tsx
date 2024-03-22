@@ -61,7 +61,7 @@ export default function Home({ searchParams }: HomeProps) {
                 </div>
               </div>
 
-              <div className="col-span-7">
+              <div className="col-span-7 flex flex-col">
                 <Suspense fallback={<GridLoading />} key={suspenseKey}>
                   <ProductList searchParams={searchParams} />
                 </Suspense>

@@ -19,6 +19,7 @@ export function useFilterGroup({ filterId }: { filterId: FilterId }) {
     const params = new URLSearchParams(prevSearchParams);
 
     params.set(filterId, updateQueryValue);
+    params.delete('page');
 
     const newSearchParams = params.toString();
 
@@ -41,6 +42,8 @@ export function useFilterGroup({ filterId }: { filterId: FilterId }) {
     } else {
       params.delete(filterId);
     }
+
+    params.delete('page');
 
     const newSearchParams = params.toString();
 

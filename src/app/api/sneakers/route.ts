@@ -16,6 +16,11 @@ export async function GET(request: NextRequest) {
   const brandQuery = searchParams.get('brand');
   const genderQuery = searchParams.get('gender');
 
+  const page = parseInt(searchParams.get('page') || '1', 10);
+  const pageSize = 10;
+  const startIndex = (page - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+
   if (categoryQuery) {
     const categories = categoryQuery.split(',');
     sneakerData = filterByCategory(sneakerData, categories);
@@ -31,5 +36,17 @@ export async function GET(request: NextRequest) {
     sneakerData = filterByGender(sneakerData, genres);
   }
 
-  return Response.json(sneakerData);
+  const paginatedData = sneakerData.slice(startIndex, endIndex);
+
+  const totalPages = Math.ceil(sneakerData.length / pageSize);
+  const nextPage = page < totalPages ? page + 1 : null;
+  const prevPage = page > 1 ? page - 1 : null;
+
+  return Response.json({
+    data: paginatedData,
+    currentPage: page,
+    nextPage,
+    prevPage,
+    totalPages,
+  });
 }
