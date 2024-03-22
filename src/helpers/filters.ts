@@ -9,6 +9,7 @@ export const categories: Category[] = [
   'lifestyle',
   'running',
   'skateboarding',
+  'other',
 ];
 
 export const brands: Brand[] = [
@@ -25,18 +26,27 @@ export const genders: Gender[] = ['men', 'women', 'youth'];
 
 export const filters: Filters[] = [
   {
+    id: 'category',
     name: 'Categoria',
-    options: categories,
-    translateOption: translateCategory,
+    options: categories.map((opt) => ({
+      value: opt,
+      label: translateCategory(opt),
+    })),
   },
   {
+    id: 'brand',
     name: 'Marca',
-    options: brands,
-    translateOption: translateBrand,
+    options: brands.map((opt) => ({
+      value: opt,
+      label: translateBrand(opt),
+    })),
   },
   {
+    id: 'gender',
     name: 'Gênero',
-    options: genders,
-    translateOption: translateGender,
+    options: genders.map((opt) => ({
+      value: opt,
+      label: translateGender(opt),
+    })),
   },
 ];

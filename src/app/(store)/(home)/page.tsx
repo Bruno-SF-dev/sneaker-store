@@ -2,12 +2,19 @@ import { ProductList } from '@/app/(store)/(home)/components/product-list';
 import { ButtonItemsPerRow } from '@/components/button-items-per-row';
 import { SideFilter } from '@/components/side-filter';
 import { HomeLayoutProvider } from '@/contexts/home-layout-context';
+import { FilterId } from '@/helpers/types/filters';
 import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 import { Suspense } from 'react';
 import GridLoading from './components/grid-loading';
 
-export default function Home() {
+interface HomeProps {
+  searchParams: { [key in FilterId]: string };
+}
+
+export default function Home({ searchParams }: HomeProps) {
+  const suspenseKey = JSON.stringify(searchParams);
+
   return (
     <div className="flex flex-col gap-8 relative">
       <div className="fixed left-0 right-0 h-64 overflow-hidden flex items-center">
@@ -55,8 +62,8 @@ export default function Home() {
               </div>
 
               <div className="col-span-7">
-                <Suspense fallback={<GridLoading />}>
-                  <ProductList />
+                <Suspense fallback={<GridLoading />} key={suspenseKey}>
+                  <ProductList searchParams={searchParams} />
                 </Suspense>
               </div>
             </div>

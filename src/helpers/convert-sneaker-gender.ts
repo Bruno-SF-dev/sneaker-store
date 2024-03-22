@@ -1,4 +1,4 @@
-import { Gender } from '@/data/types/sneakers';
+import { Gender } from '@/api/data/types/sneakers';
 
 export const genderMap: { [key in Gender]: string } = {
   men: 'Masculino',

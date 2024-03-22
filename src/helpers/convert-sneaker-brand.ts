@@ -1,8 +1,8 @@
-import { Brand } from '@/data/types/sneakers';
+import { Brand } from '@/api/data/types/sneakers';
 
 export const brandMap: { [key in Brand]: string } = {
   'Air Jordan': 'Air Jordan',
-  adidas: 'adidas',
+  adidas: 'Adidas',
   Champion: 'Champion',
   Converse: 'Converse',
   Gucci: 'Gucci',

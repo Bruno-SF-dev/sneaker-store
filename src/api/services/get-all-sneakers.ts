@@ -1,13 +1,20 @@
 import { api } from '@/api/api';
 import { Sneaker } from '@/api/data/types/sneakers';
 
-export async function getAllSneakers(): Promise<Sneaker[]> {
+interface GetAllSneakers {
+  queryParams: string;
+}
+
+export async function getAllSneakers({
+  queryParams,
+}: GetAllSneakers): Promise<Sneaker[]> {
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
-  const response = await api('/sneakers', {
-    next: {
-      revalidate: 60 * 60, // 1 hora
-    },
+  const endpoint = '/sneakers';
+  const path = !!queryParams ? endpoint.concat(queryParams) : endpoint;
+
+  const response = await api(path, {
+    cache: 'no-store',
   });
   const sneakers = await response.json();
 
