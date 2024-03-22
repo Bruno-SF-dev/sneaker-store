@@ -1,6 +1,9 @@
 import data from '@/api/data/fake-db/sneakers-data.json';
 import { Sneaker } from '@/api/data/types/sneakers';
 import { NextRequest } from 'next/server';
+import { filterByBrand } from './helpers/filter-by-brand';
+import { filterByCategory } from './helpers/filter-by-category';
+import { filterByGender } from './helpers/filter-by-gender';
 
 export async function GET(request: NextRequest) {
   console.log('request.nextUrl.searchParams', request.nextUrl.searchParams);
@@ -9,29 +12,23 @@ export async function GET(request: NextRequest) {
 
   let sneakerData: Sneaker[] = data.sneakers;
 
-  const queryCategory = searchParams.get('category');
-  const queryBrand = searchParams.get('brand');
-  const queryGender = searchParams.get('gender');
+  const categoryQuery = searchParams.get('category');
+  const brandQuery = searchParams.get('brand');
+  const genderQuery = searchParams.get('gender');
 
-  if (!!queryCategory) {
-    const queriesCategory = queryCategory.split(',');
-    sneakerData = sneakerData.filter((snk) =>
-      snk.category.some((cat) => queriesCategory.includes(cat))
-    );
+  if (categoryQuery) {
+    const categories = categoryQuery.split(',');
+    sneakerData = filterByCategory(sneakerData, categories);
   }
 
-  if (!!queryBrand) {
-    const queriesBrand = queryBrand.split(',');
-    sneakerData = sneakerData.filter((snk) =>
-      queriesBrand.includes(snk.brand_name)
-    );
+  if (brandQuery) {
+    const brands = brandQuery.split(',');
+    sneakerData = filterByBrand(sneakerData, brands);
   }
 
-  if (!!queryGender) {
-    const queriesGender = queryGender.split(',');
-    sneakerData = sneakerData.filter((snk) =>
-      snk.gender.some((gender) => queriesGender.includes(gender))
-    );
+  if (genderQuery) {
+    const genres = genderQuery.split(',');
+    sneakerData = filterByGender(sneakerData, genres);
   }
 
   return Response.json(sneakerData);

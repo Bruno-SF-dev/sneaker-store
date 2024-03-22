@@ -22,7 +22,7 @@ export const brands: Brand[] = [
   'adidas',
 ];
 
-export const genders: Gender[] = ['men', 'women', 'youth'];
+export const genres: Gender[] = ['men', 'women', 'youth'];
 
 export const filters: Filters[] = [
   {
@@ -44,7 +44,7 @@ export const filters: Filters[] = [
   {
     id: 'gender',
     name: 'Gênero',
-    options: genders.map((opt) => ({
+    options: genres.map((opt) => ({
       value: opt,
       label: translateGender(opt),
     })),
