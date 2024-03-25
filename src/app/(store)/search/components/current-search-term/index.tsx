@@ -1,7 +1,7 @@
 'use client';
 import { useSearchParams } from 'next/navigation';
 
-export function SearchTerm() {
+export function CurrentSearchTerm() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q');
 

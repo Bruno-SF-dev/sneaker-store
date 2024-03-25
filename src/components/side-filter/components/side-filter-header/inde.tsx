@@ -15,12 +15,7 @@ export function SideFilterHeader() {
       </div>
 
       {hasFilter && (
-        <Button
-          size="sm"
-          variant="underline"
-          className="dark"
-          onClick={handleRemoveAllFilter}
-        >
+        <Button size="sm" variant="underline" onClick={handleRemoveAllFilter}>
           Limpar Filtro
         </Button>
       )}

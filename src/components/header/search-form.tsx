@@ -39,6 +39,7 @@ export function SearchForm() {
         defaultValue={existingQueryParams ?? ''}
         placeholder="Buscar produtos..."
         className="relative flex-1 py-3 px-2 rounded-full bg-transparent text-sm placeholder:text-zinc-500 outline-none"
+        autoComplete="off"
       />
     </form>
   );

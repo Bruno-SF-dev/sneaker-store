@@ -6,8 +6,6 @@ import { filterByCategory } from './helpers/filter-by-category';
 import { filterByGender } from './helpers/filter-by-gender';
 
 export async function GET(request: NextRequest) {
-  console.log('request.nextUrl.searchParams', request.nextUrl.searchParams);
-
   const searchParams = request.nextUrl.searchParams;
 
   let sneakerData: Sneaker[] = data.sneakers;
