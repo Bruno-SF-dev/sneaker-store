@@ -1,8 +1,8 @@
 import { getSneaker } from '@/api/services/get-sneaker';
-import { AddToCartButton } from '@/components/cart/add-to-cart-button';
 import { translateCategory } from '@/helpers/convert-sneaker-category';
 import { translateGender } from '@/helpers/convert-sneaker-gender';
 import Image from 'next/image';
+import { ProductInfoToBuy } from '../size-section';
 
 export async function ProductView({ slug }: { slug: string }) {
   const sneaker = await getSneaker(slug);
@@ -73,25 +73,7 @@ export async function ProductView({ slug }: { slug: string }) {
             </span>
           </div>
 
-          <div className="mt-8 space-y-4">
-            <span className="block font-semibold">Tamanhos</span>
-
-            <div className="flex flex-wrap gap-2">
-              {sneaker.size_range
-                .sort((a, b) => a - b)
-                .map((size) => (
-                  <button
-                    key={size}
-                    type="button"
-                    className="flex h-9 min-w-14 items-center justify-center rounded-full border border-zinc-800 text-sm font-semibold hover:bg-zinc-900"
-                  >
-                    {size}
-                  </button>
-                ))}
-            </div>
-          </div>
-
-          <AddToCartButton productId={sneaker.id} />
+          <ProductInfoToBuy sneaker={sneaker} />
         </div>
       </div>
 

@@ -4,19 +4,27 @@ import { useCart } from '@/contexts/cart-context';
 
 interface AddToCartButtonProps {
   productId: number;
+  size: number;
 }
 
-export function AddToCartButton({ productId }: AddToCartButtonProps) {
+export function AddToCartButton({ productId, size }: AddToCartButtonProps) {
   const { addToCart } = useCart();
 
   return (
-    <button
-      type="button"
-      className="relative overflow-hidden mt-8 flex h-12 items-center justify-center rounded-full font-semibold text-white hover:brightness-90 duration-200"
-      onClick={() => addToCart(productId)}
-    >
-      <div className="absolute inset-0 rounded-md bg-gradient-to-r from-sky-500 to-sky-600 opacity-[0.9]"></div>
-      <span className="relative">Adicionar ao carrinho</span>
-    </button>
+    <div className="flex flex-col gap-4 mt-8">
+      <p className="text-center text-sm text-zinc-400">
+        Selecione um tamanho para adicionar ao carrinho.
+      </p>
+
+      <button
+        type="button"
+        className="relative overflow-hidden flex h-12 items-center justify-center rounded-full font-semibold text-white hover:scale-[1.025] duration-200"
+        onClick={() => addToCart(productId)}
+        disabled={!size}
+      >
+        <div className="absolute inset-0 rounded-md bg-gradient-to-r from-sky-500 to-sky-600 opacity-[0.9]"></div>
+        <span className="relative">Adicionar ao carrinho</span>
+      </button>
+    </div>
   );
 }
