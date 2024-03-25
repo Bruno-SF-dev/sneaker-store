@@ -7,10 +7,12 @@ interface GetAllSneakers {
 
 interface GetAllResponse {
   data: Sneaker[];
-  currentPage: number;
-  nextPage: number;
-  prevPage: number;
-  totalPages: number;
+  pagination: {
+    currentPage: number;
+    nextPage: number;
+    prevPage: number;
+    totalPages: number;
+  };
 }
 
 export async function getAllSneakers({

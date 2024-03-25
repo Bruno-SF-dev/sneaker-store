@@ -15,7 +15,7 @@ export function FilterOption({
   handleToggle: () => void;
 }) {
   return (
-    <div className="flex items-center gap-3 dark">
+    <div className="flex items-center gap-3">
       <Checkbox
         id={value}
         onClick={handleToggle}

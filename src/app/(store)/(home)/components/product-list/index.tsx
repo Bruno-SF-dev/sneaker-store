@@ -10,32 +10,9 @@ interface ProductListProps {
 
 export async function ProductList({ searchParams }: ProductListProps) {
   const search = new URLSearchParams(searchParams);
-  const searchString = search.toString();
 
-  const generatePageURL = (page: string) => {
-    const currentURL = new URLSearchParams(searchParams);
-    currentURL.set('page', page);
-    return currentURL.toString();
-  };
-
-  const {
-    data: sneakers,
-    totalPages,
-    currentPage,
-    nextPage,
-    prevPage,
-  } = await getAllSneakers({
-    queryParams: `?${searchString}`,
-  });
-
-  const buttonsPag = Array.from({ length: totalPages }).map((_, idx) => {
-    const page = String(idx + 1);
-
-    return {
-      href: `?${generatePageURL(page)}`,
-      label: page,
-      isActive: page === String(currentPage),
-    };
+  const { data: sneakers, pagination } = await getAllSneakers({
+    queryParams: `?${search}`,
   });
 
   return (
@@ -46,17 +23,7 @@ export async function ProductList({ searchParams }: ProductListProps) {
         ))}
       </Grid>
 
-      {totalPages > 1 && (
-        <div className="relative p-4">
-          <div className="absolute inset-0 rounded-md bg-gradient-to-r to-sky-500 from-transparent opacity-[0.05]"></div>
-
-          <Pagination
-            pages={buttonsPag}
-            prevPage={prevPage}
-            nextPage={nextPage}
-          />
-        </div>
-      )}
+      <Pagination pagination={pagination} />
     </div>
   );
 }
