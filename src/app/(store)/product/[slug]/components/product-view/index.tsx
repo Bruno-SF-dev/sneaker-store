@@ -2,7 +2,7 @@ import { getSneaker } from '@/api/services/get-sneaker';
 import { translateCategory } from '@/helpers/convert-sneaker-category';
 import { translateGender } from '@/helpers/convert-sneaker-gender';
 import Image from 'next/image';
-import { ProductInfoToBuy } from '../size-section';
+import { ProductInfoToBuy } from '../product-info-to-buy';
 
 export async function ProductView({ slug }: { slug: string }) {
   const sneaker = await getSneaker(slug);

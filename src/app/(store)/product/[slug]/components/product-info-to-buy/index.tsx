@@ -1,8 +1,8 @@
 'use client';
 import { Sneaker } from '@/api/data/types/sneakers';
 
-import { AddToCartButton } from '@/components/cart/add-to-cart-button';
 import { useState } from 'react';
+import { ProductAddToCartButton } from '../product-add-to-cart-button';
 
 export function ProductInfoToBuy({ sneaker }: { sneaker: Sneaker }) {
   const [sizeSelected, setSizeSelected] = useState(0);
@@ -36,7 +36,7 @@ export function ProductInfoToBuy({ sneaker }: { sneaker: Sneaker }) {
         </div>
       </div>
 
-      <AddToCartButton productId={sneaker.id} size={sizeSelected} />
+      <ProductAddToCartButton productId={sneaker.id} size={sizeSelected} />
     </>
   );
 }

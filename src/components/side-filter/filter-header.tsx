@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useFilter } from '@/hooks/filter-hook';
 import { SlidersHorizontal } from 'lucide-react';
 
-export function SideFilterHeader() {
+export function FilterHeader() {
   const { hasFilter, handleRemoveAllFilter } = useFilter();
 
   return (

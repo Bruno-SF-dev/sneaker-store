@@ -9,16 +9,6 @@ export interface ProductPageProps {
   };
 }
 
-// export async function generateMetadata({
-//   params,
-// }: ProductPageProps): Promise<Metadata> {
-//   const product = await getSneaker(params.slug);
-
-//   return {
-//     title: product.name,
-//   };
-// }
-
 export default async function ProductPage({
   params: { slug },
 }: ProductPageProps) {

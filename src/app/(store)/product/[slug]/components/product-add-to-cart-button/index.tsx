@@ -2,12 +2,15 @@
 
 import { useCart } from '@/contexts/cart-context';
 
-interface AddToCartButtonProps {
+interface ProductAddToCartButtonProps {
   productId: number;
   size: number;
 }
 
-export function AddToCartButton({ productId, size }: AddToCartButtonProps) {
+export function ProductAddToCartButton({
+  productId,
+  size,
+}: ProductAddToCartButtonProps) {
   const { addToCart } = useCart();
 
   return (
