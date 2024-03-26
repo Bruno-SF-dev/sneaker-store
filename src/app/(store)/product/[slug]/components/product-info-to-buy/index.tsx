@@ -25,6 +25,7 @@ export function ProductInfoToBuy({ sneaker }: { sneaker: Sneaker }) {
               <button
                 key={size}
                 type="button"
+                data-testid="btn-size"
                 className={`flex h-9 min-w-14 items-center justify-center rounded-full border text-sm font-semibold ${getSizeButtonClass(
                   size
                 )}`}

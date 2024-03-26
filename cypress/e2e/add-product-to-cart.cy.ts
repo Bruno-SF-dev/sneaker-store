@@ -8,6 +8,7 @@ describe('add product to cart', () => {
 
     cy.location('pathname').should('include', '/product');
 
+    cy.get('button[data-testid="btn-size"]').first().click();
     cy.contains('Adicionar ao carrinho').click();
 
     cy.contains('Carrinho (1)').should('exist');
@@ -18,6 +19,7 @@ describe('add product to cart', () => {
 
     cy.location('pathname').should('include', '/product');
 
+    cy.get('button[data-testid="btn-size"]').first().click();
     cy.contains('Adicionar ao carrinho').click();
     cy.contains('Adicionar ao carrinho').click();
 
@@ -31,6 +33,7 @@ describe('add product to cart', () => {
 
     cy.location('pathname').should('include', '/product');
 
+    cy.get('button[data-testid="btn-size"]').first().click();
     cy.contains('Adicionar ao carrinho').click();
 
     cy.contains('Carrinho (1)').should('exist');
