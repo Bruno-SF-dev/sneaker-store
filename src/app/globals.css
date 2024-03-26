@@ -31,8 +31,8 @@
     --foreground: 255 255 255;
     --card: 243 243 243;
     --card-foreground: 255 255 255;
-    --popover: 243 243 243;
-    --popover-foreground: 255 255 255;
+    --popover: 9 9 11;
+    --popover-foreground: 243 243 243;
     --primary: 255 255 255;
     --primary-foreground: 22 22 22;
     --secondary: 60 60 60;

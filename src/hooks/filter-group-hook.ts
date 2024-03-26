@@ -33,8 +33,7 @@ export function useFilterGroup({ filterId }: { filterId: FilterId }) {
       .filter((value) => value !== queryValueToRemove)
       .join(',');
 
-    const prevSearchParams = searchParams.toString();
-    const params = new URLSearchParams(prevSearchParams);
+    const params = new URLSearchParams(searchParams);
 
     if (!!updateQueryValue) {
       params.set(filterId, updateQueryValue);

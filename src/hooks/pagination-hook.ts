@@ -1,5 +1,5 @@
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
+import { useSearchQueries } from './search-queries-hook';
 
 interface UsePaginationProps {
   pagination: {
@@ -10,27 +10,13 @@ interface UsePaginationProps {
   };
 }
 
-export function usePagination({
-  pagination: { currentPage, nextPage, prevPage, totalPages },
-}: UsePaginationProps) {
-  const searchParams = useSearchParams();
-  const router = useRouter();
+export function usePagination({ pagination }: UsePaginationProps) {
+  const { currentPage, nextPage, prevPage, totalPages } = pagination;
+  const { navigateWithQuery } = useSearchQueries();
 
-  const generatePageURL = useCallback(
-    (page: number) => {
-      const currentURL = new URLSearchParams(searchParams);
-      currentURL.set('page', String(page));
-      return `?${currentURL.toString()}`;
-    },
-    [searchParams]
-  );
+  const navigateToPage = (page: number) => navigateWithQuery({ page });
 
-  const navigateToPage = useCallback(
-    (page: number) => router.push(generatePageURL(page)),
-    [generatePageURL, router]
-  );
-
-  const paginationsLinks = useMemo(
+  const paginationsItems = useMemo(
     () =>
       Array.from({ length: totalPages }).map((_, idx) => {
         const page = idx + 1;
@@ -40,12 +26,12 @@ export function usePagination({
           isActive: page === currentPage,
         };
       }),
-    [currentPage, , totalPages]
+    [currentPage, totalPages]
   );
 
   const itemsToRender = useMemo(
-    () => paginationsLinks.slice(Math.max(0, currentPage - 2), currentPage + 1),
-    [paginationsLinks, currentPage]
+    () => paginationsItems.slice(Math.max(0, currentPage - 2), currentPage + 1),
+    [paginationsItems, currentPage]
   );
 
   const haveMoreItems = useMemo(
@@ -55,8 +41,8 @@ export function usePagination({
 
   return {
     paginationsItems: itemsToRender,
-    nextPage: nextPage ? generatePageURL(nextPage) : null,
-    prevPage: prevPage ? generatePageURL(prevPage) : null,
+    nextPage,
+    prevPage,
     currentPage,
     totalPages,
     haveMoreItems,

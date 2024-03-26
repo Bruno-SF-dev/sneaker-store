@@ -3,10 +3,10 @@ import { ButtonItemsPerRow } from '@/components/button-items-per-row';
 import { SideFilter } from '@/components/side-filter';
 import { HomeLayoutProvider } from '@/contexts/home-layout-context';
 import { FilterId } from '@/helpers/types/filters';
-import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 import { Suspense } from 'react';
 import GridLoading from './components/grid-loading';
+import { SneakersSortBy } from './components/sneakers-sort-by';
 
 interface HomeProps {
   searchParams: { [key in FilterId]: string };
@@ -47,10 +47,7 @@ export default function Home({ searchParams }: HomeProps) {
                   <ButtonItemsPerRow quantity={2} />
                 </div>
 
-                <button className="flex items-center gap-2">
-                  Ordernar por
-                  <ChevronDown size={16} />
-                </button>
+                <SneakersSortBy />
               </div>
             </div>
 

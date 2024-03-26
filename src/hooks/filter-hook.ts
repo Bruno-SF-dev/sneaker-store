@@ -1,11 +1,14 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 
+const filtersQuery = ['category', 'brand', 'gender'];
+
 export function useFilter() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const searchParamsString = searchParams.toString();
 
-  const hasFilter = !!searchParamsString;
+  const hasFilter = filtersQuery.some((filterQuery) =>
+    searchParams.has(filterQuery)
+  );
 
   const handleRemoveAllFilter = () => {
     router.push('/');
