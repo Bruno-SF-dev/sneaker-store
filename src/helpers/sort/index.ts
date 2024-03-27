@@ -5,11 +5,11 @@ interface SneakerSortOption {
 
 export const sneakerSortingOptions: SneakerSortOption[] = [
   {
-    label: 'Ordenar por Maior Preço',
+    label: 'Maior Preço',
     value: 'price_desc',
   },
   {
-    label: 'Ordenar por Menor Preço',
+    label: 'Menor Preço',
     value: 'price_asc',
   },
 ];
