@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import plugin from 'tailwindcss/plugin';
 
 const config = {
   darkMode: ['class'],
@@ -83,11 +84,38 @@ const config = {
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
       maxHeight: {
-        'calc-vh-200': 'calc(100vh - 112px)',
+        'sidebar-filter': 'calc(100vh - 148px)',
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [
+    require('tailwindcss-animate'),
+    plugin(function ({ addUtilities }) {
+      const newUtilities = {
+        '.scrollbar-thin': {
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'rgb(31 29 29) white',
+        },
+        '.scrollbar-webkit': {
+          '&::-webkit-scrollbar': {
+            width: '8px',
+          },
+          '&::-webkit-scrollbar-track': {
+            background: 'transparent',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: '#16181a',
+            borderRadius: '20px',
+          },
+          '&::-webkit-scrollbar-thumb:hover': {
+            background: '#1f252f',
+          },
+        },
+      };
+
+      addUtilities(newUtilities);
+    }),
+  ],
 } satisfies Config;
 
 export default config;

@@ -8,7 +8,7 @@ export function FilterHeader() {
   const { hasFilter, handleRemoveAllFilter } = useFilter();
 
   return (
-    <div className="relative h-12 flex items-center justify-between gap-2">
+    <div className="min-h-12 flex items-center justify-between gap-2">
       <div className="flex items-center gap-2">
         <SlidersHorizontal size={18} />
         <span>Filtros</span>
