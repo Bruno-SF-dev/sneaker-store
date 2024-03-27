@@ -26,7 +26,6 @@ export function useSearchQueries() {
   );
 
   return {
-    generateSearchQueriesURL,
     navigateWithQuery,
   };
 }

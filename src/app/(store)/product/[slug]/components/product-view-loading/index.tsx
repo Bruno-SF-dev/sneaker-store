@@ -1,6 +1,6 @@
 import { Skeleton } from '@/components/skeletons/skeleton';
 
-export default function ProductViewLoading() {
+export function ProductViewLoading() {
   return (
     <div className="flex-1 flex flex-col">
       <div className="grid grid-cols-5 gap-12">

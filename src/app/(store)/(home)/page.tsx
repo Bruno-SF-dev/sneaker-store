@@ -1,12 +1,12 @@
-import { ProductList } from '@/app/(store)/(home)/components/product-list';
-import { ButtonItemsPerRow } from '@/components/button-items-per-row';
-import { SideFilter } from '@/components/side-filter';
 import { HomeLayoutProvider } from '@/contexts/home-layout-context';
-import { FilterId } from '@/helpers/types/filters';
+import { FilterId } from '@/helpers/filters/@types/filters';
 import Image from 'next/image';
 import { Suspense } from 'react';
-import GridLoading from './components/grid-loading';
-import { SneakersSortBy } from './components/sneakers-sort-by';
+import { HomeGridLoading } from './components/home-grid-loading';
+import { HomeItemsPerRow } from './components/home-items-per-row';
+import { HomeProductList } from './components/home-product-list';
+import { HomeSideFilter } from './components/home-sidebar-filter';
+import { HomeSortBy } from './components/home-sort-by';
 
 interface HomeProps {
   searchParams: { [key in FilterId]: string };
@@ -34,33 +34,28 @@ export default function Home({ searchParams }: HomeProps) {
 
       <HomeLayoutProvider>
         <div className="relative mt-64 bg-zinc-950">
-          <div className="absolute inset-0 rounded-md bg-gradient-to-r to-sky-500 from-transparent opacity-[0.05]"></div>
+          <div className="absolute inset-0 bg-gradient-to-r to-sky-500 from-transparent opacity-[0.05]"></div>
 
           <div className="relative flex flex-col gap-6 w-full max-w-[1580px] mx-auto px-8 py-12">
             <div className="flex items-center justify-between gap-6 py-2">
               <h2 className="text-3xl font-semibold">Todos os Produtos</h2>
 
               <div className="flex gap-6 items-center">
-                <div className="flex gap-2">
-                  <ButtonItemsPerRow quantity={4} />
-                  <ButtonItemsPerRow quantity={3} />
-                  <ButtonItemsPerRow quantity={2} />
-                </div>
-
-                <SneakersSortBy />
+                <HomeItemsPerRow />
+                <HomeSortBy />
               </div>
             </div>
 
             <div className="grid grid-cols-9 gap-4">
               <div className="col-span-2">
                 <div className="sticky top-28">
-                  <SideFilter />
+                  <HomeSideFilter />
                 </div>
               </div>
 
               <div className="col-span-7 flex flex-col">
-                <Suspense fallback={<GridLoading />} key={suspenseKey}>
-                  <ProductList searchParams={searchParams} />
+                <Suspense fallback={<HomeGridLoading />} key={suspenseKey}>
+                  <HomeProductList searchParams={searchParams} />
                 </Suspense>
               </div>
             </div>

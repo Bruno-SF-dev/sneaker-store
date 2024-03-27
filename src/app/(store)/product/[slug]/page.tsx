@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Suspense } from 'react';
 import { ProductView } from './components/product-view';
-import ProductViewLoading from './components/product-view-loading';
+import { ProductViewLoading } from './components/product-view-loading';
 
 export interface ProductPageProps {
   params: {

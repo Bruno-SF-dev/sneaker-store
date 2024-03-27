@@ -1,4 +1,4 @@
-import { FilterId, OptionValue } from '@/helpers/types/filters';
+import { FilterId, OptionValue } from '@/helpers/filters/@types/filters';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 export function useFilterGroup({ filterId }: { filterId: FilterId }) {

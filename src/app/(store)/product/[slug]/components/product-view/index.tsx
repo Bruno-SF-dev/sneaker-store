@@ -1,6 +1,6 @@
 import { getSneaker } from '@/api/services/get-sneaker';
-import { translateCategory } from '@/helpers/convert-sneaker-category';
-import { translateGender } from '@/helpers/convert-sneaker-gender';
+import { translateCategory } from '@/helpers/map-translations/translate-sneaker-category';
+import { translateGender } from '@/helpers/map-translations/translate-sneaker-gender';
 import Image from 'next/image';
 import { ProductInfoToBuy } from '../product-info-to-buy';
 

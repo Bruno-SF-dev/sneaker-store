@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
-import { CurrentSearchTerm } from './components/current-search-term';
-import GridLoading from './components/grid-loading';
-import { ProductList } from './components/product-list';
+import { SearchCurrentTerm } from './components/search-current-term';
+import { SearchGridLoading } from './components/search-grid-loading';
+import { SearchProductList } from './components/search-product-list';
 
 interface SearchPageProps {
   searchParams: {
@@ -20,11 +20,11 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   return (
     <div className="flex flex-col gap-12 px-8 py-12 w-full max-w-[1580px] mx-auto">
       <Suspense>
-        <CurrentSearchTerm />
+        <SearchCurrentTerm />
       </Suspense>
 
-      <Suspense key={query} fallback={<GridLoading />}>
-        <ProductList query={query} />
+      <Suspense key={query} fallback={<SearchGridLoading />}>
+        <SearchProductList query={query} />
       </Suspense>
     </div>
   );
