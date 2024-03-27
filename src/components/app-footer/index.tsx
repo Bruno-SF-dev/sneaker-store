@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export function AppFooter() {
   return (
-    <div className="relative w-full h-[240px] bg-zinc-950">
+    <div className="relative mt-auto w-full h-[240px] bg-zinc-950">
       <div className="absolute inset-0 rounded-md bg-gradient-to-r to-sky-500 from-transparent opacity-[0.035]"></div>
       <div className="absolute top-0 right-0 left-0 h-px bg-gradient-to-r from-sky-400 to-zinc-500 opacity-[0.1]" />
 
@@ -26,7 +26,7 @@ export function AppFooter() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center gap-4 pr-12 text-sm">
+        <div className="flex flex-col items-start gap-4 pr-12 text-sm">
           <span className="text-zinc-400">Desenvolvedor</span>
 
           <div className="space-y-3">
@@ -60,12 +60,7 @@ export function AppFooter() {
               />
               <span>Bruno Farias</span>
             </a>
-            <a
-              href="mailto:brunosantosfarias2@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex gap-3 items-center"
-            >
+            <p className="flex gap-3 items-center">
               <Image
                 src="/icon _gmail_.svg"
                 className="size-5"
@@ -73,8 +68,8 @@ export function AppFooter() {
                 height={24}
                 alt="Github Bruno-SF-dev"
               />
-              <span>Bruno Farias</span>
-            </a>
+              <span>brunosantosfarias2@gmail.com</span>
+            </p>
           </div>
         </div>
       </div>
