@@ -4,6 +4,9 @@
 
 O projeto SNKRS é uma sneaker store. Foi construído a fim de colocar em prática os avanços mais recentes no Next.js 13.
 
+Acesse em:
+<a href="https://sneaker-store-w3kg.vercel.app/" target="_blank">https://sneaker-store-w3kg.vercel.app/</a>
+
 ##### Conceitos Utilizados do Next.js 13 e dos recursos do React para Sever Components
 
 - Rotas de API com as novas Route Handlers.
