@@ -6,7 +6,7 @@ export function AppFooter() {
       <div className="absolute inset-0 rounded-md bg-gradient-to-r to-sky-500 from-transparent opacity-[0.035]"></div>
       <div className="absolute top-0 right-0 left-0 h-px bg-gradient-to-r from-sky-400 to-zinc-500 opacity-[0.1]" />
 
-      <div className="relative py-8 px-12 flex justify-between">
+      <div className="relative max-w-[1580px] mx-auto py-8 px-12 flex justify-between">
         <div className="flex flex-col gap-6">
           <p className="text-sm max-w-[380px]">
             SNKRS é um projeto de estudo, desenvolvido para aplicar os avanços
