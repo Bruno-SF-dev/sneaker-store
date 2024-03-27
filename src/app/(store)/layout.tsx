@@ -1,3 +1,4 @@
+import { AppFooter } from '@/components/app-footer';
 import { AppHeader } from '@/components/app-header';
 import { CartProvider } from '@/contexts/cart-context';
 import { ReactNode } from 'react';
@@ -9,6 +10,8 @@ export default function StoreLayout({ children }: { children: ReactNode }) {
         <AppHeader />
 
         {children}
+
+        <AppFooter />
       </div>
     </CartProvider>
   );

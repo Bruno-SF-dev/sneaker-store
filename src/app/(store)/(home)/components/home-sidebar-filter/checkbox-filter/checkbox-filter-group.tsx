@@ -1,8 +1,8 @@
-import { Filters } from '@/helpers/filters/@types/filters';
+import { CheckboxFilters } from '@/helpers/filters/@types/filters';
 import { useFilterGroup } from '@/hooks/filter-group-hook';
 import { CheckboxFilterOption } from './checkbox-filter-option';
 
-export function CheckboxFilterGroup({ filter }: { filter: Filters }) {
+export function CheckboxFilterGroup({ filter }: { filter: CheckboxFilters }) {
   const { isChecked, handleToggleFilter } = useFilterGroup({
     filterId: filter.id,
   });

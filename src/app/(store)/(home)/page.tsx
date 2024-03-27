@@ -36,7 +36,7 @@ export default function Home({ searchParams }: HomeProps) {
         <div className="relative mt-64 bg-zinc-950">
           <div className="absolute inset-0 bg-gradient-to-r to-sky-500 from-transparent opacity-[0.05]"></div>
 
-          <div className="relative flex flex-col gap-6 w-full max-w-[1580px] mx-auto px-8 py-12">
+          <div className="relative flex flex-col gap-6 w-full max-w-[1580px] mx-auto px-8 pt-12 pb-24">
             <div className="flex items-center justify-between gap-6 py-2">
               <h2 className="text-3xl font-semibold">Todos os Produtos</h2>
 
