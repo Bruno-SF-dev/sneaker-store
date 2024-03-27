@@ -18,7 +18,7 @@ interface GetAllResponse {
 export async function getAllSneakers({
   queryParams,
 }: GetAllSneakers): Promise<GetAllResponse> {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  await new Promise((resolve) => setTimeout(resolve, 500));
 
   const endpoint = '/sneakers';
   const path = !!queryParams ? endpoint.concat(queryParams) : endpoint;
