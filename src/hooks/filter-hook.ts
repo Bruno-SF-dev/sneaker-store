@@ -1,6 +1,6 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 
-const queriesName = ['category', 'brand', 'gender', 'sort'];
+const queriesName = ['category', 'brand', 'gender', 'color', 'sort'];
 
 export function useFilter() {
   const router = useRouter();

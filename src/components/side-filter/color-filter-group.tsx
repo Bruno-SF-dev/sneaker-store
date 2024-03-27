@@ -1,8 +1,8 @@
-import { Filters } from '@/helpers/types/filters';
+import { ColorFilters } from '@/helpers/types/filters';
 import { useFilterGroup } from '@/hooks/filter-group-hook';
-import { FilterOption } from './filter-option';
+import { ColorFilterOption } from './color-filter-option';
 
-export function FilterGroup({ filter }: { filter: Filters }) {
+export function ColorFilterGroup({ filter }: { filter: ColorFilters }) {
   const { isChecked, handleToggleFilter } = useFilterGroup({
     filterId: filter.id,
   });
@@ -11,14 +11,15 @@ export function FilterGroup({ filter }: { filter: Filters }) {
     <div key={filter.name} className="group flex flex-col">
       <span className="text-sm font-semibold uppercase">{filter.name}</span>
 
-      <div className="mt-4 space-y-2">
-        {filter.options.map(({ value, label }) => (
-          <FilterOption
+      <div className="self-start mt-4 grid grid-cols-5 gap-3">
+        {filter.options.map(({ value }) => (
+          <ColorFilterOption
             key={value}
             value={value}
-            label={label}
             handleToggle={() => handleToggleFilter(value)}
             isChecked={isChecked(value)}
+            className="size-5"
+            variant={value}
           />
         ))}
       </div>

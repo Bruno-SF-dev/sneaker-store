@@ -53,7 +53,7 @@ export default function Home({ searchParams }: HomeProps) {
 
             <div className="grid grid-cols-9 gap-4">
               <div className="col-span-2">
-                <div className="sticky top-28">
+                <div className="sticky top-28 max-h-calc-vh-200 overflow-y-auto scroll">
                   <SideFilter />
                 </div>
               </div>

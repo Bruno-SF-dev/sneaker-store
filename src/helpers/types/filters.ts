@@ -1,7 +1,7 @@
-import { Brand, Category, Gender } from '../../api/data/types/sneakers';
+import { Brand, Category, Color, Gender } from '../../api/data/types/sneakers';
 
-export type FilterId = 'category' | 'brand' | 'gender';
-export type OptionValue = Category | Brand | Gender;
+export type FilterId = 'category' | 'brand' | 'gender' | 'color';
+export type OptionValue = Category | Brand | Gender | Color;
 
 export interface Filters {
   id: FilterId;
@@ -9,5 +9,13 @@ export interface Filters {
   options: {
     value: OptionValue;
     label: string;
+  }[];
+}
+
+export interface ColorFilters {
+  id: 'color';
+  name: 'Cor';
+  options: {
+    value: Color;
   }[];
 }

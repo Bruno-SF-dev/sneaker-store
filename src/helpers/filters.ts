@@ -1,8 +1,8 @@
 import { translateBrand } from '@/helpers/convert-sneaker-brand';
 import { translateCategory } from '@/helpers/convert-sneaker-category';
 import { translateGender } from '@/helpers/convert-sneaker-gender';
-import { Brand, Category, Gender } from '../api/data/types/sneakers';
-import { Filters } from './types/filters';
+import { Brand, Category, Color, Gender } from '../api/data/types/sneakers';
+import { ColorFilters, Filters } from './types/filters';
 
 export const categories: Category[] = [
   'basketball',
@@ -23,6 +23,23 @@ export const brands: Brand[] = [
 ];
 
 export const genres: Gender[] = ['men', 'women', 'youth'];
+
+export const colors: Color[] = [
+  'white',
+  'black',
+  'red',
+  'blue',
+  'brown',
+  'green',
+  'pink',
+  'purple',
+  'cream',
+  'multi-color',
+  'orange',
+  'grey',
+  'tan',
+  'yellow',
+];
 
 export const filters: Filters[] = [
   {
@@ -47,6 +64,16 @@ export const filters: Filters[] = [
     options: genres.map((opt) => ({
       value: opt,
       label: translateGender(opt),
+    })),
+  },
+];
+
+export const filterColor: ColorFilters[] = [
+  {
+    id: 'color',
+    name: 'Cor',
+    options: colors.map((opt) => ({
+      value: opt,
     })),
   },
 ];

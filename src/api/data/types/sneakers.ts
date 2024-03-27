@@ -13,6 +13,21 @@ export type Brand =
   | 'Vans'
   | 'adidas';
 export type Gender = 'men' | 'youth' | 'women';
+export type Color =
+  | 'white'
+  | 'black'
+  | 'red'
+  | 'blue'
+  | 'brown'
+  | 'green'
+  | 'pink'
+  | 'purple'
+  | 'cream'
+  | 'multi-color'
+  | 'orange'
+  | 'grey'
+  | 'tan'
+  | 'yellow';
 
 export interface Sneaker {
   box_condition: string;
