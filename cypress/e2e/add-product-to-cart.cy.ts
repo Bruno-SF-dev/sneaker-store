@@ -6,6 +6,8 @@ describe('add product to cart', () => {
   it('deve ser possível navegar para a página do produto e adicionar o produto ao carrinho', () => {
     cy.get('a[href^="/product"]').first().click();
 
+    cy.wait(500);
+
     cy.location('pathname').should('include', '/product');
 
     cy.get('button[data-testid="btn-size"]').first().click();
