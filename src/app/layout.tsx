@@ -10,8 +10,8 @@ const leagueGothic = League_Gothic({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | DevStore',
-    default: 'DevStore',
+    template: '%s | SNKRS STORE',
+    default: 'SNKRS STORE',
   },
 };
 
