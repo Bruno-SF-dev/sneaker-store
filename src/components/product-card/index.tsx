@@ -18,7 +18,7 @@ export function ProdutCard({ product }: { product: Sneaker }) {
           width={24}
           height={24}
           alt=""
-          className="absolute w-5 top-1 invert opacity-15"
+          className="absolute w-[7.5%] top-1 invert opacity-15"
         />
       )}
 

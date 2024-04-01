@@ -15,7 +15,7 @@ export function HomeSortBy() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex items-center gap-2 px-2 py-1">
+      <DropdownMenuTrigger className="flex items-center gap-2 px-2 py-1 whitespace-nowrap">
         Ordernar por
         <ChevronDown size={16} />
       </DropdownMenuTrigger>

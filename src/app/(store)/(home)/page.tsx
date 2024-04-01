@@ -41,19 +41,21 @@ export default function Home({ searchParams }: HomeProps) {
               <h2 className="text-3xl font-semibold">Todos os Produtos</h2>
 
               <div className="flex gap-6 items-center">
-                <HomeItemsPerRow />
+                <div className="hidden lg:block">
+                  <HomeItemsPerRow />
+                </div>
                 <HomeSortBy />
               </div>
             </div>
 
             <div className="grid grid-cols-9 gap-4">
-              <div className="col-span-2">
+              <div className="col-span-2 hidden lg:block">
                 <div className="sticky top-28">
                   <HomeSideFilter />
                 </div>
               </div>
 
-              <div className="col-span-7 flex flex-col">
+              <div className="flex flex-col col-span-9 lg:col-span-7">
                 <Suspense fallback={<HomeGridLoading />} key={suspenseKey}>
                   <HomeProductList searchParams={searchParams} />
                 </Suspense>
