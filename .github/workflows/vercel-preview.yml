@@ -29,6 +29,8 @@ jobs:
         uses: zentered/vercel-preview-url@v1.1.9
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          GITHUB_REF: 'master'
+          GITHUB_REPOSITORY: 'Bruno-SF-dev/sneaker-store'
         with:
           vercel_project_id: ${{ secrets.VERCEL_PROJECT_ID }}
 
