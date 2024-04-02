@@ -23,7 +23,7 @@ jobs:
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
 
-      - run: sleep 60
+      - run: sleep 30
       - name: vercel-preview-url
         id: vercel_preview_url
         uses: zentered/vercel-preview-url@v1.1.9
@@ -31,10 +31,6 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         with:
           vercel_project_id: ${{ secrets.VERCEL_PROJECT_ID }}
-
-      - name: Get URL
-        id: get_url
-        run: echo "::set-output name=url::https://${{ steps.vercel_preview_url.outputs.preview_url }}"
 
       - name: Comment on Pull Request
         uses: actions/github-script@v4
@@ -45,5 +41,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: 'The preview URL is: ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}.'
+              body: 'The preview URL is: ${{ steps.vercel_preview_url.outputs.preview_url }}.'
             });
