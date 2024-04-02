@@ -17,15 +17,15 @@ export default function Home({ searchParams }: HomeProps) {
 
   return (
     <div className="flex flex-col gap-8 relative">
-      <div className="fixed left-0 right-0 h-64 overflow-hidden flex items-center">
+      <div className="fixed left-0 right-0 h-32 md:h-48 lg:h-64 overflow-hidden flex items-center">
         <Image
           src="/nike-air-jordan-blue-home.png"
           width={1000}
           height={800}
           alt=""
-          className="w-full mx-auto mb-[180px] brightness-[0.15]"
+          className="w-full mx-auto mb-[80px] md:mb-[180px] brightness-[0.15]"
         />
-        <h1 className="absolute w-full text-center font-ghotic text-8xl text-zinc-200">
+        <h1 className="absolute w-full text-center font-ghotic text-5xl md:text-6xl lg:text-8xl text-zinc-200">
           <span className="">Elevate </span>
           <span>Your </span>
           <span className="">Style</span>
@@ -33,7 +33,7 @@ export default function Home({ searchParams }: HomeProps) {
       </div>
 
       <HomeLayoutProvider>
-        <div className="relative mt-64 bg-zinc-950">
+        <div className="relative mt-32 md:mt-48 lg:mt-64 bg-zinc-950">
           <div className="absolute inset-0 bg-gradient-to-r to-sky-500 from-transparent opacity-[0.05]"></div>
 
           <div className="relative flex flex-col gap-6 w-full max-w-[1580px] mx-auto px-8 pt-12 pb-24">
