@@ -40,10 +40,11 @@ jobs:
         uses: actions/github-script@v6
         id: my-script
         with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            github.rest.issues.createComment({
+            github.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: "Deployed at ${{env.DEPLOYMENT_URL}}"
-            })
+            });
