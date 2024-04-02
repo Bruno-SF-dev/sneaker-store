@@ -3,8 +3,8 @@ env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 on:
-  push:
-    branches-ignore:
+  pull_request:
+    branches:
       - master
 jobs:
   Deploy-Preview:
@@ -25,11 +25,27 @@ jobs:
 
       - run: sleep 30
       - name: vercel-preview-url
-        uses: zentered/vercel-preview-url@v1.1.9
         id: vercel_preview_url
+        uses: zentered/vercel-preview-url@v1.1.9
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         with:
           vercel_project_id: ${{ secrets.VERCEL_PROJECT_ID }}
+
       - name: Get URL
-        run: echo "https://${{ steps.vercel_preview_url.outputs.preview_url }}"
+        id: get_url
+        run: echo "::set-output name=url::https://${{ steps.vercel_preview_url.outputs.preview_url }}"
+
+      - name: Comment on Pull Request
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { context, github } = require('@actions/github');
+            const { data } = await github.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `Preview URL: ${process.env.OUTPUT_GET_URL}`
+            });
+            console.log(data);
