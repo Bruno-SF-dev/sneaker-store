@@ -1,18 +1,18 @@
-name: Cypress Tests
+name: CI - Run Tests
 
 on:
   push:
     branches-ignore:
       - master
+      - dev
 
 jobs:
   cypress-run:
     runs-on: ubuntu-22.04
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      # Install NPM dependencies, cache them correctly
-      # and run all Cypress tests
 
       - name: Install Node.js
         uses: actions/setup-node@v3
@@ -20,7 +20,7 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
