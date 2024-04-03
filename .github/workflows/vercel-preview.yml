@@ -9,7 +9,8 @@ on:
       - master
       - dev
   push:
-    branches: -dev
+    branches:
+      - dev
 
 jobs:
   Deploy-Preview:
