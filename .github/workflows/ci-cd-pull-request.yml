@@ -1,5 +1,9 @@
 name: CI/CD - Run Tests and Vercel Pull Request Deployment
 
+env:
+  NEXT_PUBLIC_API_BASE_URL: 'https://devstore-next-api-red.vercel.app'
+  APP_URL: 'http://localhost:3000'
+
 on:
   pull_request:
     branches:
@@ -24,15 +28,13 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
-        env:
-          NEXT_PUBLIC_API_BASE_URL: 'https://devstore-next-api-red.vercel.app'
-          APP_URL: 'http://localhost:3000'
         with:
           build: npm run build
           start: npm start
 
   vercel-preview-deploy:
     runs-on: ubuntu-latest
+    needs: run-e2e-tests
     steps:
       - name: Checkout
         uses: actions/checkout@v4
