@@ -41,6 +41,7 @@ jobs:
           npm run build
 
       - name: Vercel Preview Deployment
+        id: vercel_deploy
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
@@ -48,12 +49,13 @@ jobs:
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
           github-comment: false
 
-      - uses: actions/github-script@v6
+      - name: Comment in PR
+        uses: actions/github-script@v6
         with:
           script: |
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '👋 Thanks for reporting!'
+              body: '**Vercel Preview Deployment is Ready**\n\n✅ Preview: ${{ steps.vercel_deploy.outputs.preview-url }}\nPreview Name: ${{ steps.vercel_deploy.outputs.preview-name}}'
             })
