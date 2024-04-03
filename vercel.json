@@ -1,11 +1,5 @@
 {
   "github": {
     "enabled": false
-  },
-  "builds": [
-    {
-      "src": "{{Source for distribution}}",
-      "use": "@vercel/static"
-    }
-  ]
+  }
 }
