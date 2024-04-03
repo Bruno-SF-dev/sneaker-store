@@ -46,5 +46,4 @@ jobs:
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
           github-comment: false
-          alias-domains: |
-            dev-sneaker-store.vercel.app
+          alias-domains: ${{ secrets.DEV_DOMAIN }}
