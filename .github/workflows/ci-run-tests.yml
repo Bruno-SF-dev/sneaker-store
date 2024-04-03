@@ -20,8 +20,8 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         env:
-          NEXT_PUBLIC_API_BASE_URL: 'https://devstore-next-api-red.vercel.app'
-          APP_URL: 'http://localhost:3000'
+          NEXT_PUBLIC_API_BASE_URL: ${{ secrets.NEXT_PUBLIC_API_BASE_URL }}
+          APP_URL: ${{ secrets.APP_URL }}
         with:
           build: npm run build
           start: npm start
