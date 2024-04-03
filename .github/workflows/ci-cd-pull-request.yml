@@ -57,5 +57,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '**Vercel Preview Deployment is Ready**\n\n✅ Preview: ${{ steps.vercel_deploy.outputs.preview-url }}\nPreview Name: ${{ steps.vercel_deploy.outputs.preview-name}}'
+              body: '**Vercel Preview Deployment is Ready**\n\nThis Pull Request was implemented by Vercel.\n\n✅ **Visit Preview**: ${{ steps.vercel_deploy.outputs.preview-url }}'
             })
