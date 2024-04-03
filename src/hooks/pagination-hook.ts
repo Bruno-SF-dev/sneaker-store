@@ -40,7 +40,7 @@ export function usePagination({ pagination }: UsePaginationProps) {
   );
 
   return {
-    paginationsItems: itemsToRender,
+    itemsToRender,
     nextPage,
     prevPage,
     currentPage,
