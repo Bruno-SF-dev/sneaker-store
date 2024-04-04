@@ -1,8 +1,8 @@
 name: CI/CD - Run Tests and Vercel Dev Deployment
 
 env:
-  NEXT_PUBLIC_API_BASE_URL: 'https://devstore-next-api-red.vercel.app'
-  APP_URL: 'http://localhost:3000'
+  NEXT_PUBLIC_API_BASE_URL: ${{ secrets.NEXT_PUBLIC_API_BASE_URL }}
+  APP_URL: ${{ secrets.APP_URL }}
 
 on:
   push:
@@ -43,9 +43,8 @@ jobs:
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
           github-comment: false
           alias-domains: |
-            dev-sneaker-store.vercel.app
+            ${{ secrets.DEV_DOMAIN }}
