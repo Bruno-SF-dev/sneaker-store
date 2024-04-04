@@ -3,8 +3,9 @@ import { translateCategory } from '@/helpers/map-translations/translate-sneaker-
 import { translateGender } from '@/helpers/map-translations/translate-sneaker-gender';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ProductCardType } from '../@types/product-card';
 
-export function ProdutCard({ product }: { product: Sneaker }) {
+export function ProductCard({ product }: { product: ProductCardType }) {
   return (
     <Link
       href={`/product/${product.slug}`}
