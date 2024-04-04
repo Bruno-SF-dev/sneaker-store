@@ -26,7 +26,7 @@ interface HomePaginationProps {
 
 export function HomePagination({ pagination }: HomePaginationProps) {
   const {
-    paginationsItems,
+    itemsToRender,
     nextPage,
     prevPage,
     currentPage,
@@ -65,7 +65,7 @@ export function HomePagination({ pagination }: HomePaginationProps) {
             <ChevronLeft className="size-4" />
           </Button>
 
-          {paginationsItems.map((item) => (
+          {itemsToRender.map((item) => (
             <Button
               key={item.page}
               variant={item.isActive ? 'default' : 'ghost'}
