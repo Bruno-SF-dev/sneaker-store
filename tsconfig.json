@@ -21,14 +21,17 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "types": ["node", "jest", "ts-node", "@testing-library/jest-dom", "cypress"]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/data/types"
+    "src/data/types",
+    "src/**/*",
+    "jest.setup.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "cypress.config.ts"]
 }
