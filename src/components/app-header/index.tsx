@@ -35,7 +35,7 @@ export function AppHeader() {
             <Link href="/" className="flex items-center gap-2 hover:underline">
               <span className="text-sm">Minha conta</span>
               <Image
-                src="https://github.com/Bruno-SF-dev.png"
+                src="/avatar.svg"
                 className="size-6 border border-zinc-800 rounded-full"
                 width={24}
                 height={24}
