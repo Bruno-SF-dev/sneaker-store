@@ -1,5 +1,5 @@
 import { getSearchSneakers } from '@/api/services/get-search-sneakers';
-import { ProdutCard } from '@/components/product-card';
+import { ProductCard } from '@/components/product-card';
 import { PackageSearch } from 'lucide-react';
 import { SearchGrid } from '../search-grid';
 
@@ -19,7 +19,7 @@ export async function SearchProductList({ query }: { query: string }) {
     <SearchGrid>
       {!!sneakers.length &&
         sneakers.map((sneaker) => (
-          <ProdutCard product={sneaker} key={sneaker.id} />
+          <ProductCard product={sneaker} key={sneaker.id} />
         ))}
     </SearchGrid>
   );

@@ -1,10 +1,11 @@
-import { Sneaker } from '@/api/data/types/sneakers';
 import { translateCategory } from '@/helpers/map-translations/translate-sneaker-category';
 import { translateGender } from '@/helpers/map-translations/translate-sneaker-gender';
+import { formatPrice } from '@/utils/format-price';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ProductCardType } from '../@types/product-card';
 
-export function ProdutCard({ product }: { product: Sneaker }) {
+export function ProductCard({ product }: { product: ProductCardType }) {
   return (
     <Link
       href={`/product/${product.slug}`}
@@ -28,7 +29,7 @@ export function ProdutCard({ product }: { product: Sneaker }) {
           width={640}
           height={640}
           quality={100}
-          alt=""
+          alt={product.name}
           className="group-hover:scale-105 transition-transform duration-500 flex-1 drop-shadow-sneaker-card"
         />
         <div className="absolute bottom-[40px] left-[50%] translate-x-[-50%] w-[70%] h-3 rounded-[50%] blur-md bg-black/50" />
@@ -52,11 +53,8 @@ export function ProdutCard({ product }: { product: Sneaker }) {
               .join(' / ')}
           </span>
 
-          <strong className="mt-4 font-normal">
-            {((product.retail_price_cents ?? 0) / 100).toLocaleString('pt-BR', {
-              style: 'currency',
-              currency: 'USD',
-            })}
+          <strong className="mt-4 font-normal" data-testid="card-price">
+            {formatPrice((product.retail_price_cents ?? 0) / 100)}
           </strong>
         </div>
       </div>

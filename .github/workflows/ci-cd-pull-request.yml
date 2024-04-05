@@ -11,8 +11,22 @@ on:
       - dev
 
 jobs:
+  run-unit-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Jest - Run Unit Tests
+        run: npm test
+
   run-e2e-tests:
     runs-on: ubuntu-22.04
+    needs: run-unit-tests
 
     steps:
       - name: Checkout
