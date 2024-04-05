@@ -1,3 +1,4 @@
+import { getAllSneakers } from '@/api/services/get-all-sneakers';
 import { ProductCard } from '@/components/product-card';
 import { FilterId } from '@/helpers/filters/@types/filters';
 import { HomeGrid } from '../home-grid';
