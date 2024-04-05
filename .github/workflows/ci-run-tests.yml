@@ -11,7 +11,7 @@ on:
       - dev
 
 jobs:
-  unit-tests:
+  run-unit-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,7 +23,8 @@ jobs:
 
       - name: Jest - Run Unit Tests
         run: npm test
-  e2e-tests:
+
+  run-e2e-tests:
     runs-on: ubuntu-22.04
 
     steps:
